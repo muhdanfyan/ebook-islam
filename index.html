@@ -176,7 +176,7 @@
 
         // ========== PDF VIEWER ==========
         function openPDF(path, title, downloadPath) {
-            const baseUrl = window.location.origin;
+            const baseUrl = 'https://raw.githubusercontent.com/muhdanfyan/ebook-islam/main';
             const pdfUrl = `${baseUrl}/${encodeURI(path)}`;
             document.getElementById('pdfViewer').src = pdfUrl;
             document.getElementById('downloadBtn').href = pdfUrl;
