@@ -1,5 +1,3 @@
 {
-  "buildCommand": "cp index.html public/",
-  "outputDirectory": "public",
-  "framework": null
+  "version": 2
 }
