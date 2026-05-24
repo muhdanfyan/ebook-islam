@@ -8,7 +8,6 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f5f3f0; color: #2d2a24; line-height: 1.6; }
         
-        /* Header */
         .hero { background: linear-gradient(135deg, #1a3a2a 0%, #2d5a3e 100%); color: #fff; padding: 80px 20px 60px; text-align: center; }
         .hero h1 { font-size: 2.8em; margin-bottom: 10px; font-weight: 700; }
         .hero h1 span { color: #c9a96e; }
@@ -18,98 +17,93 @@
         .hero .stat .num { font-size: 2em; font-weight: 700; }
         .hero .stat .label { font-size: 0.85em; opacity: 0.8; }
         
-        /* Search & Filter */
-        .controls { max-width: 1200px; margin: -25px auto 30px; padding: 0 20px; position: relative; z-index: 10; }
-        .search-box { width: 100%; padding: 16px 20px; border: none; border-radius: 14px; font-size: 1.05em; 
-            background: #fff; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+        .container { max-width: 1280px; margin: 0 auto; padding: 20px; }
         
-        /* Categories */
-        .categories { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        .cat-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 25px; }
-        .cat-tab { padding: 8px 18px; border-radius: 20px; border: 1.5px solid #ccc; cursor: pointer; font-size: 0.9em;
-            transition: all 0.2s; background: #fff; }
-        .cat-tab:hover, .cat-tab.active { background: #1a3a2a; color: #fff; border-color: #1a3a2a; }
+        .search-box { width: 100%; padding: 14px 20px; font-size: 1.05em; border: 2px solid #ddd; border-radius: 12px; margin-bottom: 20px; outline: none; transition: border 0.3s; background: #fff; }
+        .search-box:focus { border-color: #2d5a3e; }
         
-        /* Catalog Grid */
-        .catalog { max-width: 1200px; margin: 0 auto; padding: 0 20px 50px; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
-        .book-card { background: #fff; border-radius: 12px; padding: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-            cursor: pointer; transition: all 0.2s; border: 1px solid #e8e5e0; }
-        .book-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.1); }
-        .book-card .cat-badge { display: inline-block; padding: 3px 10px; border-radius: 10px; font-size: 0.75em;
-            background: #e8f0ea; color: #1a3a2a; margin-bottom: 8px; }
-        .book-card h3 { font-size: 1em; font-weight: 600; margin-bottom: 6px; color: #2d2a24; }
-        .book-card .meta { font-size: 0.82em; color: #888; }
+        .categories { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+        .cat-btn { padding: 8px 18px; border: 2px solid #ddd; background: #fff; border-radius: 20px; cursor: pointer; font-size: 0.9em; transition: all 0.2s; }
+        .cat-btn:hover { border-color: #2d5a3e; color: #2d5a3e; }
+        .cat-btn.active { background: #2d5a3e; color: #fff; border-color: #2d5a3e; }
         
-        /* PDF Viewer Modal */
-        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); }
-        .modal.show { display: flex; align-items: center; justify-content: center; }
-        .modal-content { width: 90%; height: 90%; background: #fff; border-radius: 12px; overflow: hidden; position: relative; }
-        .modal iframe { width: 100%; height: 100%; border: none; }
-        .modal-close { position: absolute; top: 12px; right: 16px; font-size: 28px; color: #fff; cursor: pointer; z-index: 10; background: rgba(0,0,0,0.3); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: none; }
-        .modal-actions { position: absolute; top: 12px; right: 60px; z-index: 10; display: flex; gap: 8px; }
-        .modal-actions a { padding: 8px 16px; background: #1a3a2a; color: #fff; text-decoration: none; border-radius: 8px; font-size: 0.85em; }
+        .catalog { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+        .book-card { background: #fff; border-radius: 12px; padding: 18px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; border: 1px solid #eee; }
+        .book-card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.1); }
+        .book-card .cat-badge { display: inline-block; background: #e8f0ec; color: #1a3a2a; padding: 3px 10px; border-radius: 10px; font-size: 0.75em; font-weight: 600; margin-bottom: 8px; }
+        .book-card h3 { font-size: 1em; margin-bottom: 6px; color: #2d2a24; line-height: 1.4; }
+        .book-card .meta { font-size: 0.8em; color: #999; }
         
-        /* Footer */
-        footer { text-align: center; padding: 30px 20px; color: #888; font-size: 0.85em; border-top: 1px solid #e0ddd8; }
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 1000; }
+        .modal.show { display: flex; flex-direction: column; }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; padding: 12px 20px; background: #1a3a2a; color: #fff; }
+        .modal-header h2 { font-size: 1em; flex: 1; margin-right: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .modal-header .actions { display: flex; gap: 10px; }
+        .modal-header a, .modal-header button { background: rgba(255,255,255,0.15); color: #fff; border: none; padding: 8px 16px; border-radius: 8px; cursor: pointer; text-decoration: none; font-size: 0.9em; }
+        .modal-header a:hover, .modal-header button:hover { background: rgba(255,255,255,0.25); }
+        .modal-body { flex: 1; display: flex; }
+        .modal-body embed { width: 100%; height: 100%; min-height: 80vh; }
         
         @media (max-width: 600px) {
-            .hero h1 { font-size: 2em; }
+            .hero h1 { font-size: 1.8em; }
+            .hero { padding: 50px 16px 40px; }
             .catalog { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-    <div class="hero">
-        <h1>📚 <span>Ebook</span> Islam</h1>
-        <p>Koleksi digital eBook Islam salaf — PAKET A I AM STUDENT</p>
-        <div class="stats">
-            <div class="stat">
-                <div class="num" id="totalBooks">241</div>
-                <div class="label">eBook PDF</div>
-            </div>
-            <div class="stat">
-                <div class="num" id="totalCategories">11</div>
-                <div class="label">Kategori</div>
-            </div>
-            <div class="stat">
-                <div class="num">633 MB</div>
-                <div class="label">Total Size</div>
-            </div>
+
+<div class="hero">
+    <h1>📚 Ebook <span>Islam</span></h1>
+    <p>Koleksi digital buku-buku Islam salaf dalam format PDF — gratis, mudah diakses, dan penuh ilmu.</p>
+    <div class="stats">
+        <div class="stat">
+            <div class="num" id="totalBooks">0</div>
+            <div class="label">Total Buku</div>
+        </div>
+        <div class="stat">
+            <div class="num" id="totalCats">0</div>
+            <div class="label">Kategori</div>
         </div>
     </div>
+</div>
 
-    <div class="controls">
-        <input type="text" class="search-box" id="searchInput" placeholder="🔍 Cari judul ebook..." oninput="filterBooks()">
+<div class="container">
+    <input type="text" class="search-box" id="searchInput" placeholder="🔍 Cari judul ebook..." oninput="filterBooks()">
+    
+    <div class="categories" id="categoryButtons">
+<button class="cat-btn active" onclick="filterByCat('all')">Semua</button>
+            <button class="cat-btn" onclick="filterByCat('INFO_MA')">Info Ma (6)</button>
+            <button class="cat-btn" onclick="filterByCat('KHUTBAH_JUM')">Khutbah Jum (5)</button>
+            <button class="cat-btn" onclick="filterByCat('KITABULLAH')">Kitabullah (3)</button>
+            <button class="cat-btn" onclick="filterByCat('MIX_ARTIKEL_SUNNAH')">Mix Artikel Sunnah (31)</button>
+            <button class="cat-btn" onclick="filterByCat('MUAMALAH_MALIYAAH')">Muamalah Maliyaah (86)</button>
+            <button class="cat-btn" onclick="filterByCat('PEMBELAJARAN_DASAR_ISLAM')">Pembelajaran Dasar Islam (9)</button>
+            <button class="cat-btn" onclick="filterByCat('PENERBIT_BUKU_SALAF')">Penerbit Buku Salaf (26)</button>
+            <button class="cat-btn" onclick="filterByCat('Root')">Root (2)</button>
+            <button class="cat-btn" onclick="filterByCat('TILAWAH_AL_QUR')">Tilawah Al Qur (79)</button>
     </div>
+    
+    <div class="catalog" id="catalog">
+        <div style="grid-column:1/-1; text-align:center; padding:40px; color:#888;">Memuat data...</div>
+    </div>
+</div>
 
-    <div class="categories">
-        <div class="cat-tabs" id="catTabs">
-            <div class="cat-tab active" onclick="filterCategory('all')">Semua</div>
+<div class="modal" id="pdfModal" onclick="if(event.target===this)closePDF()">
+    <div class="modal-header">
+        <h2 id="pdfTitle">Memuat...</h2>
+        <div class="actions">
+            <a id="downloadBtn" href="#" download>⬇ Download</a>
+            <button onclick="closePDF()">✕ Tutup</button>
         </div>
     </div>
-
-    <div class="catalog" id="catalog"></div>
-
-    <!-- Modal PDF Viewer -->
-    <div class="modal" id="pdfModal">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeModal()">✕</button>
-            <div class="modal-actions">
-                <a id="downloadBtn" href="#" download>⬇ Download</a>
-            </div>
-            <iframe id="pdfViewer" src=""></iframe>
-        </div>
+    <div class="modal-body">
+        <embed id="pdfViewer" src="" type="application/pdf">
     </div>
+</div>
 
-    <footer>
-        <p>Dipersiapkan oleh Pondok Informatika • 24 Mei 2026</p>
-        <p style="margin-top:6px;font-size:0.85em;opacity:0.7">Sumber: PAKET A - I AM STUDENT</p>
-    </footer>
-
-    <script>
-        // ========== DATA BUKU ==========
-        // Generated by build script - update with real data
-        const BOOKS = [
+<script>
+const BOOKS = [
   {title:'FIX_PAKET A-I AM STUDENT',cat:'Root',path:'FIX_PAKET A-I AM STUDENT.pdf',size:'542 KB'},
   {title:'MEMBUKA EBOOK CHM',cat:'Root',path:'MEMBUKA EBOOK CHM.pdf',size:'619 KB'},
   {title:'Penggugur_Amal_Seluruh_dan_Sebagian_Nor_Kandir_PUSTAKA_SYABAB',cat:'MIX_ARTIKEL_SUNNAH',path:'MIX_ARTIKEL_SUNNAH/Penggugur_Amal_Seluruh_dan_Sebagian_Nor_Kandir_PUSTAKA_SYABAB.pdf',size:'11.4 MB'},
@@ -232,12 +226,12 @@
   {title:'Ebook-ZISWAF',cat:'MUAMALAH_MALIYAAH',path:'MUAMALAH_MALIYAAH/ZAKAT/Ebook-ZISWAF.pdf',size:'13.2 MB'},
   {title:'Zakat fitri',cat:'MUAMALAH_MALIYAAH',path:'MUAMALAH_MALIYAAH/ZAKAT/Zakat fitri.pdf',size:'138 KB'},
   {title:'Zakat Kreatif Untuk Pembangunan Regeneratif-1',cat:'MUAMALAH_MALIYAAH',path:'MUAMALAH_MALIYAAH/ZAKAT/Zakat Kreatif Untuk Pembangunan Regeneratif-1.pdf',size:'1.3 MB'},
-  {title:'Ma\'had Diploma-Madinah Salam ',cat:'INFO_MA'HAD_PONPES',path:'INFO_MA\'HAD_PONPES/Ma\'had Diploma-Madinah Salam .pdf',size:'1.3 MB'},
-  {title:'Ma\'had Aisyah binti Abu Bakar',cat:'INFO_MA'HAD_PONPES',path:'INFO_MA\'HAD_PONPES/Ma\'had Aisyah binti Abu Bakar.pdf',size:'1.6 MB'},
-  {title:'Ma\'had Aly Tadribut Du\'at',cat:'INFO_MA'HAD_PONPES',path:'INFO_MA\'HAD_PONPES/Ma\'had Aly Tadribut Du\'at.pdf',size:'647 KB'},
-  {title:'Ma\'had Aly Habrul Ummah',cat:'INFO_MA'HAD_PONPES',path:'INFO_MA\'HAD_PONPES/Ma\'had Aly Habrul Ummah.pdf',size:'771 KB'},
-  {title:'Ma\'had Aisyah binti Abu Bakar ',cat:'INFO_MA'HAD_PONPES',path:'INFO_MA\'HAD_PONPES/Ma\'had Aisyah binti Abu Bakar .pdf',size:'1.6 MB'},
-  {title:'Ma\'had Diploma-Madinah Salam',cat:'INFO_MA'HAD_PONPES',path:'INFO_MA\'HAD_PONPES/Ma\'had Diploma-Madinah Salam.pdf',size:'1.3 MB'},
+  {title:'Ma\'had Diploma-Madinah Salam ',cat:'INFO_MA',path:'INFO_MA\'HAD_PONPES/Ma\'had Diploma-Madinah Salam .pdf',size:'1.3 MB'},
+  {title:'Ma\'had Aisyah binti Abu Bakar',cat:'INFO_MA',path:'INFO_MA\'HAD_PONPES/Ma\'had Aisyah binti Abu Bakar.pdf',size:'1.6 MB'},
+  {title:'Ma\'had Aly Tadribut Du\'at',cat:'INFO_MA',path:'INFO_MA\'HAD_PONPES/Ma\'had Aly Tadribut Du\'at.pdf',size:'647 KB'},
+  {title:'Ma\'had Aly Habrul Ummah',cat:'INFO_MA',path:'INFO_MA\'HAD_PONPES/Ma\'had Aly Habrul Ummah.pdf',size:'771 KB'},
+  {title:'Ma\'had Aisyah binti Abu Bakar ',cat:'INFO_MA',path:'INFO_MA\'HAD_PONPES/Ma\'had Aisyah binti Abu Bakar .pdf',size:'1.6 MB'},
+  {title:'Ma\'had Diploma-Madinah Salam',cat:'INFO_MA',path:'INFO_MA\'HAD_PONPES/Ma\'had Diploma-Madinah Salam.pdf',size:'1.3 MB'},
   {title:'Kaidah-kaidah Dasar Islam-2',cat:'PEMBELAJARAN_DASAR_ISLAM',path:'PEMBELAJARAN_DASAR_ISLAM/Kaidah-kaidah Dasar Islam-2.pdf',size:'1.4 MB'},
   {title:'Belajar Dasar Agama',cat:'PEMBELAJARAN_DASAR_ISLAM',path:'PEMBELAJARAN_DASAR_ISLAM/Belajar Dasar Agama.pdf',size:'350 KB'},
   {title:'4_Pelajaran Dasar Agama Islam - Pembahasan Fiqih dan Muamalah.Pdf',cat:'PEMBELAJARAN_DASAR_ISLAM',path:'PEMBELAJARAN_DASAR_ISLAM/4_Pelajaran Dasar Agama Islam - Pembahasan Fiqih dan Muamalah.Pdf',size:'1.4 MB'},
@@ -247,90 +241,90 @@
   {title:'Mengenal Dasar-dasar Keislaman',cat:'PEMBELAJARAN_DASAR_ISLAM',path:'PEMBELAJARAN_DASAR_ISLAM/Mengenal Dasar-dasar Keislaman.pdf',size:'5.1 MB'},
   {title:'Kaidah Dasar Islam',cat:'PEMBELAJARAN_DASAR_ISLAM',path:'PEMBELAJARAN_DASAR_ISLAM/Kaidah Dasar Islam.pdf',size:'814 KB'},
   {title:'1_Pelajaran Dasar Agama Islam-Pembahasan Aqidah.Pdf',cat:'PEMBELAJARAN_DASAR_ISLAM',path:'PEMBELAJARAN_DASAR_ISLAM/1_Pelajaran Dasar Agama Islam-Pembahasan Aqidah.Pdf',size:'1.1 MB'},
-  {title:'Makhrojul Huruf',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/Makhrojul Huruf.pdf',size:'2.1 MB'},
-  {title:'terjemah-tafsiriyah-muqaddimah-jazariyah',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/terjemah-tafsiriyah-muqaddimah-jazariyah.pdf',size:'4.2 MB'},
-  {title:'Matan_Salsabil_Asy_Syafiy Fi \'Ilmit_Tajwid',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/Matan_Salsabil_Asy_Syafiy Fi \'Ilmit_Tajwid.pdf',size:'5.3 MB'},
-  {title:'Makhrojul wa Sifatu',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/Makhrojul wa Sifatu.pdf',size:'4.3 MB'},
-  {title:'Irab min dalam al Quran-Ust Abu Hafizh Irfan',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/Irab min dalam al Quran-Ust Abu Hafizh Irfan.pdf',size:'2.3 MB'},
-  {title:'Matan Hidayatussibyan Beserta Terjemahannya_3',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/Matan Hidayatussibyan Beserta Terjemahannya_3.pdf',size:'259 KB'},
-  {title:'Kaidah harakat-Ust Abu Hafizh Irfan',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/Kaidah harakat-Ust Abu Hafizh Irfan.pdf',size:'220 KB'},
-  {title:'Bacaan al Quran Riwayat Hafs dari Ashim',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/Bacaan al Quran Riwayat Hafs dari Ashim.pdf',size:'539 KB'},
-  {title:'Tartil Tilawah Al-Quran Mushaf Utsmani',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/Tartil Tilawah Al-Quran Mushaf Utsmani.pdf',size:'12.6 MB'},
-  {title:'Al-Itqon 2.0 - Ebook',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/Al-Itqon 2.0 - Ebook.pdf',size:'2.3 MB'},
-  {title:'Matan Tuhfatul Athfal Beserta Terjemahannya',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/Matan Tuhfatul Athfal Beserta Terjemahannya.pdf',size:'308 KB'},
-  {title:'tuhfatul-athfal_naskh-dr-abdul-muhsin-bin-muhammad-al-qasim',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/tuhfatul-athfal_naskh-dr-abdul-muhsin-bin-muhammad-al-qasim.pdf',size:'1.0 MB'},
-  {title:'Terjemah matan Ath Tuhfatul Athfal',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/Terjemah matan Ath Tuhfatul Athfal.pdf',size:'783 KB'},
-  {title:'Matan ath Tuhfatul Athfal',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/Matan ath Tuhfatul Athfal.pdf',size:'448 KB'},
-  {title:'Modul_Daurah_Tajwidul_Quran_Terjemah',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/Modul_Daurah_Tajwidul_Quran_Terjemah.pdf',size:'568 KB'},
-  {title:'Kitab Tajwid Metode Al-Ahsan',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/KITAB/Kitab Tajwid Metode Al-Ahsan.pdf',size:'1.0 MB'},
-  {title:'Fathul_Aqfal Syarah Matan Tuhfatul Athfal',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/KITAB/Fathul_Aqfal Syarah Matan Tuhfatul Athfal.pdf',size:'4.7 MB'},
-  {title:'Matan Tuhfatul Athfal Beserta Terjemahan-1',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/KITAB/Matan Tuhfatul Athfal Beserta Terjemahan-1.pdf',size:'428 KB'},
-  {title:'Syarah_Matan_Tuhfatut_Athfal_Syaikh_DR_Muhammad_Rofiq_Asy_Syubukiy.PDF',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/KITAB/Syarah_Matan_Tuhfatut_Athfal_Syaikh_DR_Muhammad_Rofiq_Asy_Syubukiy.PDF',size:'4.0 MB'},
-  {title:'Syarah Matan Tuhfatut Athfal Syaikh Sulaiman Jamzuriy',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/KITAB/Syarah Matan Tuhfatut Athfal Syaikh Sulaiman Jamzuriy.pdf',size:'1.0 MB'},
-  {title:'6.3 Huruf- Huruf Syajariyyah (Tengah Lidah)',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/6.3 Huruf- Huruf Syajariyyah (Tengah Lidah).pdf',size:'172 KB'},
-  {title:'4.2 Tempat-Tempat Keluar Huruf (B)',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/4.2 Tempat-Tempat Keluar Huruf (B).pdf',size:'164 KB'},
-  {title:'6.5 Huruf- Huruf Nith\'iyyah (Gusi Atas)',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/6.5 Huruf- Huruf Nith\'iyyah (Gusi Atas).pdf',size:'167 KB'},
-  {title:'6.6 Huruf- Huruf  Litsawiyyah (Gusi)',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/6.6 Huruf- Huruf  Litsawiyyah (Gusi).pdf',size:'167 KB'},
-  {title:'9.2 Pembahasan dan Praktik Idghom Syafawiy',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/9.2 Pembahasan dan Praktik Idghom Syafawiy.pdf',size:'221 KB'},
-  {title:'14 Pembahasan Mad Far’iy Karena Sebab Hamzah',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/14 Pembahasan Mad Far’iy Karena Sebab Hamzah.pdf',size:'161 KB'},
-  {title:'10. Pembahasan Qolqolah',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/10. Pembahasan Qolqolah.pdf',size:'180 KB'},
-  {title:'12_3_Hukum_Ro_Boleh_Tafkhim_dan_Tarqiqi_Boleh_Dibaca_Tebal_dan_Tipis',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/12_3_Hukum_Ro_Boleh_Tafkhim_dan_Tarqiqi_Boleh_Dibaca_Tebal_dan_Tipis.pdf',size:'191 KB'},
-  {title:'7.4 Pembahasan dan Praktik Idghom Bi_Ghunnah',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/7.4 Pembahasan dan Praktik Idghom Bi_Ghunnah.pdf',size:'217 KB'},
-  {title:'15.1 Pembahasan  Mad Far’iy Karena Sebab Sukun (Mad Lazim)',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/15.1 Pembahasan  Mad Far’iy Karena Sebab Sukun (Mad Lazim).pdf',size:'189 KB'},
-  {title:'6.1 Huruf- Huruf  Halqiyyah (Tenggorokan)',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/6.1 Huruf- Huruf  Halqiyyah (Tenggorokan).pdf',size:'175 KB'},
-  {title:'7.7 Pembahasan dan Praktik Ikhfa (C)',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/7.7 Pembahasan dan Praktik Ikhfa (C).pdf',size:'185 KB'},
-  {title:'8.1 Pembahasan Mim Bertasydid',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/8.1 Pembahasan Mim Bertasydid.pdf',size:'150 KB'},
-  {title:'7.2 Pembahasan dan Praktik Iqlab',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/7.2 Pembahasan dan Praktik Iqlab.pdf',size:'184 KB'},
-  {title:'4.3 Tempat-Tempat Keluar Huruf (C)',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/4.3 Tempat-Tempat Keluar Huruf (C).pdf',size:'160 KB'},
-  {title:'11.2 Pembahasan Alif Lam Asy_Syamsiyah',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/11.2 Pembahasan Alif Lam Asy_Syamsiyah.pdf',size:'218 KB'},
-  {title:'6.8 Huruf- Huruf Syafawiyyah (Bibir)',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/6.8 Huruf- Huruf Syafawiyyah (Bibir).pdf',size:'171 KB'},
-  {title:'11.1 Pembahasan Alif Lam Al-Qomariyyah',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/11.1 Pembahasan Alif Lam Al-Qomariyyah.pdf',size:'230 KB'},
-  {title:'3. Isti\'azah dan Basmalah',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/3. Isti\'azah dan Basmalah.pdf',size:'289 KB'},
-  {title:'5.1 Sifat-Sifat Huruf Yang Memiliki Lawan',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/5.1 Sifat-Sifat Huruf Yang Memiliki Lawan.pdf',size:'251 KB'},
-  {title:'15_2_Pembahasan_Mad_Far’iy_Karena_Sebab_Sukun_Mad_Arid_Lisukun',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/15_2_Pembahasan_Mad_Far’iy_Karena_Sebab_Sukun_Mad_Arid_Lisukun.pdf',size:'153 KB'},
-  {title:'13 Pembahasan Mad Asliy (Mad Thobi\'iy)',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/13 Pembahasan Mad Asliy (Mad Thobi\'iy).pdf',size:'172 KB'},
-  {title:'2. Lahn (Kesalahan dalam membaca Al-Quran)',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/2. Lahn (Kesalahan dalam membaca Al-Quran).pdf',size:'250 KB'},
-  {title:'6.4 Huruf- Huruf  Asaliyyah (Ujung Lidah)',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/6.4 Huruf- Huruf  Asaliyyah (Ujung Lidah).pdf',size:'167 KB'},
-  {title:'7.6 Pembahasan dan Praktik Ikhfa (B)',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/7.6 Pembahasan dan Praktik Ikhfa (B).pdf',size:'184 KB'},
-  {title:'12.1 Hukum Ro Tafkhim (Dibaca Tebal)',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/12.1 Hukum Ro Tafkhim (Dibaca Tebal).pdf',size:'208 KB'},
-  {title:'4.1 Tempat-Tempat Keluar Huruf (A)',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/4.1 Tempat-Tempat Keluar Huruf (A).pdf',size:'163 KB'},
-  {title:'6.2 Huruf- Huruf Lahawiyyah (Tekak)',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/6.2 Huruf- Huruf Lahawiyyah (Tekak).pdf',size:'162 KB'},
-  {title:'16 Pembahasan Mad Far\'iy Karena Sebab Waqof (Mad Iwadh)',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/16 Pembahasan Mad Far\'iy Karena Sebab Waqof (Mad Iwadh).pdf',size:'163 KB'},
-  {title:'9.3 Pembahasan dan Praktik Izhar Syafawiy',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/9.3 Pembahasan dan Praktik Izhar Syafawiy.pdf',size:'170 KB'},
-  {title:'5.2 Sifat-Sifat Huruf Yang Tidak Memiliki Lawan',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/5.2 Sifat-Sifat Huruf Yang Tidak Memiliki Lawan.pdf',size:'246 KB'},
-  {title:'9.1 Pembahasan dan Praktik Ikhfa Syafawiy',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/9.1 Pembahasan dan Praktik Ikhfa Syafawiy.pdf',size:'172 KB'},
-  {title:'1. Pengantar dan Definisi Ilmu Tajwid',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/1. Pengantar dan Definisi Ilmu Tajwid.pdf',size:'234 KB'},
-  {title:'17 Pembahasan Mad Pembuka Surah-Surah Al-Qur’an',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/17 Pembahasan Mad Pembuka Surah-Surah Al-Qur’an.pdf',size:'176 KB'},
-  {title:'12.2 Hukum Ro Tarqiq (Dibaca Tipis)',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/12.2 Hukum Ro Tarqiq (Dibaca Tipis).pdf',size:'223 KB'},
-  {title:'15_3_Pembahasan_Mad_Far’iy_Karena_Sebab_Sukun_Mad_Layyin',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/15_3_Pembahasan_Mad_Far’iy_Karena_Sebab_Sukun_Mad_Layyin.pdf',size:'192 KB'},
-  {title:'6.7 Huruf- Huruf  Dzalqiyyah (Pinggir Lidah)',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/6.7 Huruf- Huruf  Dzalqiyyah (Pinggir Lidah).pdf',size:'167 KB'},
-  {title:'7.1 Pembahasan dan Praktik Izhar Haqiqiy',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/7.1 Pembahasan dan Praktik Izhar Haqiqiy.pdf',size:'182 KB'},
-  {title:'7.3 Pembahasan dan Praktik Idghom Bilaa_Gunnah',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/7.3 Pembahasan dan Praktik Idghom Bilaa_Gunnah.pdf',size:'165 KB'},
-  {title:'7.5 Pembahasan dan Praktik Ikhfa (A)',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/7.5 Pembahasan dan Praktik Ikhfa (A).pdf',size:'186 KB'},
-  {title:'8.2 Pembahasan Nun Bertasydid',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/8.2 Pembahasan Nun Bertasydid.pdf',size:'149 KB'},
-  {title:'Ilmu Tajwid',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/TAJWID-TAHSIN/Ilmu Tajwid.pdf',size:'636 KB'},
-  {title:'Tahsin tilawah al-Quran-Ust Abu Hafizh Irfan',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/TAJWID-TAHSIN/Tahsin tilawah al-Quran-Ust Abu Hafizh Irfan.pdf',size:'319 KB'},
-  {title:'Al Quran & Tajwid',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/TAJWID-TAHSIN/Al Quran & Tajwid.pdf',size:'3.3 MB'},
-  {title:'Tahsin & Tajwid',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/TAJWID-TAHSIN/Tahsin & Tajwid.pdf',size:'533 KB'},
-  {title:'Tajwid & Ghorib-Ust Abu Hafizh Irfan',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/TAJWID-TAHSIN/Tajwid & Ghorib-Ust Abu Hafizh Irfan.pdf',size:'472 KB'},
-  {title:'Mengenal Ilmu Tajwid dan Urgensinya',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/TAJWID-TAHSIN/Mengenal Ilmu Tajwid dan Urgensinya.pdf',size:'761 KB'},
-  {title:'Materi Tajwid',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/TAJWID-TAHSIN/Materi Tajwid.pdf',size:'6.8 MB'},
-  {title:'(Jilid 1) Kaidah-kaidahTajwid-Tajweed Rules',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/TAJWID-TAHSIN/TAJWEED RULES/(Jilid 1) Kaidah-kaidahTajwid-Tajweed Rules.pdf',size:'4.1 MB'},
-  {title:'(Jilid 2) Kaidah-kaidahTajwid (Tajweed Rules)',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/TAJWID-TAHSIN/TAJWEED RULES/(Jilid 2) Kaidah-kaidahTajwid (Tajweed Rules).pdf',size:'3.0 MB'},
-  {title:'Avoid Mistakes in Recitation',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/TAJWID-TAHSIN/TAJWEED RULES/Avoid Mistakes in Recitation.pdf',size:'1.1 MB'},
-  {title:'(Jilid 3) Kaidah-kaidahTajwid (Tajweed Rules)',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/TAJWID-TAHSIN/TAJWEED RULES/(Jilid 3) Kaidah-kaidahTajwid (Tajweed Rules).pdf',size:'1.7 MB'},
-  {title:'Matan Manzhumah Jazariyah',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/AL-JAZARIYAH/Matan Manzhumah Jazariyah.pdf',size:'659 KB'},
-  {title:'manzhumah-jazariyah_terjemah-jawa_arab-melayu',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/AL-JAZARIYAH/manzhumah-jazariyah_terjemah-jawa_arab-melayu.pdf',size:'7.3 MB'},
-  {title:'Matan Al-Jazariyyah Beserta Terjemahannya 1_1',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/AL-JAZARIYAH/Matan Al-Jazariyyah Beserta Terjemahannya 1_1.pdf',size:'213 KB'},
-  {title:'Matan Kitab Al Jazariyah',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/AL-JAZARIYAH/Matan Kitab Al Jazariyah.pdf',size:'182 KB'},
-  {title:'modul daurah tajwidul quran - Matan Manzhumah Jazariyah',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/AL-JAZARIYAH/modul daurah tajwidul quran - Matan Manzhumah Jazariyah.pdf',size:'4.2 MB'},
-  {title:'Mandzumah Ibnul Jazary_nafidatulilmi.blogspot.com',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/AL-JAZARIYAH/Mandzumah Ibnul Jazary_nafidatulilmi.blogspot.com.pdf',size:'5.0 MB'},
-  {title:'Syarah Matan al Jazariyyah',cat:'TILAWAH_AL_QUR'AN',path:'TILAWAH_AL_QUR\'AN/AL-JAZARIYAH/Syarah Matan al Jazariyyah.pdf',size:'3.9 MB'},
-  {title:'Kumpulan Materi khutbah-Ust Abu Hafizh Irfan',cat:'KHUTBAH_JUM'AT',path:'KHUTBAH_JUM\'AT/Kumpulan Materi khutbah-Ust Abu Hafizh Irfan.pdf',size:'617 KB'},
-  {title:'Ensiklopedi Khutbah Pilihan-Ust Abu Hafizh Irfan',cat:'KHUTBAH_JUM'AT',path:'KHUTBAH_JUM\'AT/Ensiklopedi Khutbah Pilihan-Ust Abu Hafizh Irfan.pdf',size:'3.1 MB'},
-  {title:'Khutbah Jumat, Istri Nuh, Luth, dan Firaun',cat:'KHUTBAH_JUM'AT',path:'KHUTBAH_JUM\'AT/Khutbah Jumat, Istri Nuh, Luth, dan Firaun.pdf',size:'235 KB'},
-  {title:'Materi Khutbah Jumat',cat:'KHUTBAH_JUM'AT',path:'KHUTBAH_JUM\'AT/Materi Khutbah Jumat.pdf',size:'8.4 MB'},
-  {title:'Khutbatul Hajjah',cat:'KHUTBAH_JUM'AT',path:'KHUTBAH_JUM\'AT/Khutbatul Hajjah.pdf',size:'1.3 MB'},
+  {title:'Makhrojul Huruf',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/Makhrojul Huruf.pdf',size:'2.1 MB'},
+  {title:'terjemah-tafsiriyah-muqaddimah-jazariyah',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/terjemah-tafsiriyah-muqaddimah-jazariyah.pdf',size:'4.2 MB'},
+  {title:'Matan_Salsabil_Asy_Syafiy Fi \'Ilmit_Tajwid',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/Matan_Salsabil_Asy_Syafiy Fi \'Ilmit_Tajwid.pdf',size:'5.3 MB'},
+  {title:'Makhrojul wa Sifatu',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/Makhrojul wa Sifatu.pdf',size:'4.3 MB'},
+  {title:'Irab min dalam al Quran-Ust Abu Hafizh Irfan',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/Irab min dalam al Quran-Ust Abu Hafizh Irfan.pdf',size:'2.3 MB'},
+  {title:'Matan Hidayatussibyan Beserta Terjemahannya_3',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/Matan Hidayatussibyan Beserta Terjemahannya_3.pdf',size:'259 KB'},
+  {title:'Kaidah harakat-Ust Abu Hafizh Irfan',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/Kaidah harakat-Ust Abu Hafizh Irfan.pdf',size:'220 KB'},
+  {title:'Bacaan al Quran Riwayat Hafs dari Ashim',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/Bacaan al Quran Riwayat Hafs dari Ashim.pdf',size:'539 KB'},
+  {title:'Tartil Tilawah Al-Quran Mushaf Utsmani',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/Tartil Tilawah Al-Quran Mushaf Utsmani.pdf',size:'12.6 MB'},
+  {title:'Al-Itqon 2.0 - Ebook',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/Al-Itqon 2.0 - Ebook.pdf',size:'2.3 MB'},
+  {title:'Matan Tuhfatul Athfal Beserta Terjemahannya',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/Matan Tuhfatul Athfal Beserta Terjemahannya.pdf',size:'308 KB'},
+  {title:'tuhfatul-athfal_naskh-dr-abdul-muhsin-bin-muhammad-al-qasim',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/tuhfatul-athfal_naskh-dr-abdul-muhsin-bin-muhammad-al-qasim.pdf',size:'1.0 MB'},
+  {title:'Terjemah matan Ath Tuhfatul Athfal',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/Terjemah matan Ath Tuhfatul Athfal.pdf',size:'783 KB'},
+  {title:'Matan ath Tuhfatul Athfal',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/Matan ath Tuhfatul Athfal.pdf',size:'448 KB'},
+  {title:'Modul_Daurah_Tajwidul_Quran_Terjemah',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/Modul_Daurah_Tajwidul_Quran_Terjemah.pdf',size:'568 KB'},
+  {title:'Kitab Tajwid Metode Al-Ahsan',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/KITAB/Kitab Tajwid Metode Al-Ahsan.pdf',size:'1.0 MB'},
+  {title:'Fathul_Aqfal Syarah Matan Tuhfatul Athfal',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/KITAB/Fathul_Aqfal Syarah Matan Tuhfatul Athfal.pdf',size:'4.7 MB'},
+  {title:'Matan Tuhfatul Athfal Beserta Terjemahan-1',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/KITAB/Matan Tuhfatul Athfal Beserta Terjemahan-1.pdf',size:'428 KB'},
+  {title:'Syarah_Matan_Tuhfatut_Athfal_Syaikh_DR_Muhammad_Rofiq_Asy_Syubukiy.PDF',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/KITAB/Syarah_Matan_Tuhfatut_Athfal_Syaikh_DR_Muhammad_Rofiq_Asy_Syubukiy.PDF',size:'4.0 MB'},
+  {title:'Syarah Matan Tuhfatut Athfal Syaikh Sulaiman Jamzuriy',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/KITAB/Syarah Matan Tuhfatut Athfal Syaikh Sulaiman Jamzuriy.pdf',size:'1.0 MB'},
+  {title:'6.3 Huruf- Huruf Syajariyyah (Tengah Lidah)',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/6.3 Huruf- Huruf Syajariyyah (Tengah Lidah).pdf',size:'172 KB'},
+  {title:'4.2 Tempat-Tempat Keluar Huruf (B)',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/4.2 Tempat-Tempat Keluar Huruf (B).pdf',size:'164 KB'},
+  {title:'6.5 Huruf- Huruf Nith\'iyyah (Gusi Atas)',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/6.5 Huruf- Huruf Nith\'iyyah (Gusi Atas).pdf',size:'167 KB'},
+  {title:'6.6 Huruf- Huruf  Litsawiyyah (Gusi)',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/6.6 Huruf- Huruf  Litsawiyyah (Gusi).pdf',size:'167 KB'},
+  {title:'9.2 Pembahasan dan Praktik Idghom Syafawiy',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/9.2 Pembahasan dan Praktik Idghom Syafawiy.pdf',size:'221 KB'},
+  {title:'14 Pembahasan Mad Far’iy Karena Sebab Hamzah',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/14 Pembahasan Mad Far’iy Karena Sebab Hamzah.pdf',size:'161 KB'},
+  {title:'10. Pembahasan Qolqolah',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/10. Pembahasan Qolqolah.pdf',size:'180 KB'},
+  {title:'12_3_Hukum_Ro_Boleh_Tafkhim_dan_Tarqiqi_Boleh_Dibaca_Tebal_dan_Tipis',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/12_3_Hukum_Ro_Boleh_Tafkhim_dan_Tarqiqi_Boleh_Dibaca_Tebal_dan_Tipis.pdf',size:'191 KB'},
+  {title:'7.4 Pembahasan dan Praktik Idghom Bi_Ghunnah',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/7.4 Pembahasan dan Praktik Idghom Bi_Ghunnah.pdf',size:'217 KB'},
+  {title:'15.1 Pembahasan  Mad Far’iy Karena Sebab Sukun (Mad Lazim)',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/15.1 Pembahasan  Mad Far’iy Karena Sebab Sukun (Mad Lazim).pdf',size:'189 KB'},
+  {title:'6.1 Huruf- Huruf  Halqiyyah (Tenggorokan)',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/6.1 Huruf- Huruf  Halqiyyah (Tenggorokan).pdf',size:'175 KB'},
+  {title:'7.7 Pembahasan dan Praktik Ikhfa (C)',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/7.7 Pembahasan dan Praktik Ikhfa (C).pdf',size:'185 KB'},
+  {title:'8.1 Pembahasan Mim Bertasydid',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/8.1 Pembahasan Mim Bertasydid.pdf',size:'150 KB'},
+  {title:'7.2 Pembahasan dan Praktik Iqlab',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/7.2 Pembahasan dan Praktik Iqlab.pdf',size:'184 KB'},
+  {title:'4.3 Tempat-Tempat Keluar Huruf (C)',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/4.3 Tempat-Tempat Keluar Huruf (C).pdf',size:'160 KB'},
+  {title:'11.2 Pembahasan Alif Lam Asy_Syamsiyah',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/11.2 Pembahasan Alif Lam Asy_Syamsiyah.pdf',size:'218 KB'},
+  {title:'6.8 Huruf- Huruf Syafawiyyah (Bibir)',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/6.8 Huruf- Huruf Syafawiyyah (Bibir).pdf',size:'171 KB'},
+  {title:'11.1 Pembahasan Alif Lam Al-Qomariyyah',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/11.1 Pembahasan Alif Lam Al-Qomariyyah.pdf',size:'230 KB'},
+  {title:'3. Isti\'azah dan Basmalah',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/3. Isti\'azah dan Basmalah.pdf',size:'289 KB'},
+  {title:'5.1 Sifat-Sifat Huruf Yang Memiliki Lawan',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/5.1 Sifat-Sifat Huruf Yang Memiliki Lawan.pdf',size:'251 KB'},
+  {title:'15_2_Pembahasan_Mad_Far’iy_Karena_Sebab_Sukun_Mad_Arid_Lisukun',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/15_2_Pembahasan_Mad_Far’iy_Karena_Sebab_Sukun_Mad_Arid_Lisukun.pdf',size:'153 KB'},
+  {title:'13 Pembahasan Mad Asliy (Mad Thobi\'iy)',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/13 Pembahasan Mad Asliy (Mad Thobi\'iy).pdf',size:'172 KB'},
+  {title:'2. Lahn (Kesalahan dalam membaca Al-Quran)',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/2. Lahn (Kesalahan dalam membaca Al-Quran).pdf',size:'250 KB'},
+  {title:'6.4 Huruf- Huruf  Asaliyyah (Ujung Lidah)',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/6.4 Huruf- Huruf  Asaliyyah (Ujung Lidah).pdf',size:'167 KB'},
+  {title:'7.6 Pembahasan dan Praktik Ikhfa (B)',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/7.6 Pembahasan dan Praktik Ikhfa (B).pdf',size:'184 KB'},
+  {title:'12.1 Hukum Ro Tafkhim (Dibaca Tebal)',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/12.1 Hukum Ro Tafkhim (Dibaca Tebal).pdf',size:'208 KB'},
+  {title:'4.1 Tempat-Tempat Keluar Huruf (A)',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/4.1 Tempat-Tempat Keluar Huruf (A).pdf',size:'163 KB'},
+  {title:'6.2 Huruf- Huruf Lahawiyyah (Tekak)',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/6.2 Huruf- Huruf Lahawiyyah (Tekak).pdf',size:'162 KB'},
+  {title:'16 Pembahasan Mad Far\'iy Karena Sebab Waqof (Mad Iwadh)',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/16 Pembahasan Mad Far\'iy Karena Sebab Waqof (Mad Iwadh).pdf',size:'163 KB'},
+  {title:'9.3 Pembahasan dan Praktik Izhar Syafawiy',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/9.3 Pembahasan dan Praktik Izhar Syafawiy.pdf',size:'170 KB'},
+  {title:'5.2 Sifat-Sifat Huruf Yang Tidak Memiliki Lawan',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/5.2 Sifat-Sifat Huruf Yang Tidak Memiliki Lawan.pdf',size:'246 KB'},
+  {title:'9.1 Pembahasan dan Praktik Ikhfa Syafawiy',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/9.1 Pembahasan dan Praktik Ikhfa Syafawiy.pdf',size:'172 KB'},
+  {title:'1. Pengantar dan Definisi Ilmu Tajwid',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/1. Pengantar dan Definisi Ilmu Tajwid.pdf',size:'234 KB'},
+  {title:'17 Pembahasan Mad Pembuka Surah-Surah Al-Qur’an',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/17 Pembahasan Mad Pembuka Surah-Surah Al-Qur’an.pdf',size:'176 KB'},
+  {title:'12.2 Hukum Ro Tarqiq (Dibaca Tipis)',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/12.2 Hukum Ro Tarqiq (Dibaca Tipis).pdf',size:'223 KB'},
+  {title:'15_3_Pembahasan_Mad_Far’iy_Karena_Sebab_Sukun_Mad_Layyin',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/15_3_Pembahasan_Mad_Far’iy_Karena_Sebab_Sukun_Mad_Layyin.pdf',size:'192 KB'},
+  {title:'6.7 Huruf- Huruf  Dzalqiyyah (Pinggir Lidah)',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/6.7 Huruf- Huruf  Dzalqiyyah (Pinggir Lidah).pdf',size:'167 KB'},
+  {title:'7.1 Pembahasan dan Praktik Izhar Haqiqiy',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/7.1 Pembahasan dan Praktik Izhar Haqiqiy.pdf',size:'182 KB'},
+  {title:'7.3 Pembahasan dan Praktik Idghom Bilaa_Gunnah',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/7.3 Pembahasan dan Praktik Idghom Bilaa_Gunnah.pdf',size:'165 KB'},
+  {title:'7.5 Pembahasan dan Praktik Ikhfa (A)',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/7.5 Pembahasan dan Praktik Ikhfa (A).pdf',size:'186 KB'},
+  {title:'8.2 Pembahasan Nun Bertasydid',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/THUFATUL ANFAL/LPI AL AHSAN/SYARAH/8.2 Pembahasan Nun Bertasydid.pdf',size:'149 KB'},
+  {title:'Ilmu Tajwid',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/TAJWID-TAHSIN/Ilmu Tajwid.pdf',size:'636 KB'},
+  {title:'Tahsin tilawah al-Quran-Ust Abu Hafizh Irfan',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/TAJWID-TAHSIN/Tahsin tilawah al-Quran-Ust Abu Hafizh Irfan.pdf',size:'319 KB'},
+  {title:'Al Quran & Tajwid',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/TAJWID-TAHSIN/Al Quran & Tajwid.pdf',size:'3.3 MB'},
+  {title:'Tahsin & Tajwid',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/TAJWID-TAHSIN/Tahsin & Tajwid.pdf',size:'533 KB'},
+  {title:'Tajwid & Ghorib-Ust Abu Hafizh Irfan',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/TAJWID-TAHSIN/Tajwid & Ghorib-Ust Abu Hafizh Irfan.pdf',size:'472 KB'},
+  {title:'Mengenal Ilmu Tajwid dan Urgensinya',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/TAJWID-TAHSIN/Mengenal Ilmu Tajwid dan Urgensinya.pdf',size:'761 KB'},
+  {title:'Materi Tajwid',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/TAJWID-TAHSIN/Materi Tajwid.pdf',size:'6.8 MB'},
+  {title:'(Jilid 1) Kaidah-kaidahTajwid-Tajweed Rules',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/TAJWID-TAHSIN/TAJWEED RULES/(Jilid 1) Kaidah-kaidahTajwid-Tajweed Rules.pdf',size:'4.1 MB'},
+  {title:'(Jilid 2) Kaidah-kaidahTajwid (Tajweed Rules)',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/TAJWID-TAHSIN/TAJWEED RULES/(Jilid 2) Kaidah-kaidahTajwid (Tajweed Rules).pdf',size:'3.0 MB'},
+  {title:'Avoid Mistakes in Recitation',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/TAJWID-TAHSIN/TAJWEED RULES/Avoid Mistakes in Recitation.pdf',size:'1.1 MB'},
+  {title:'(Jilid 3) Kaidah-kaidahTajwid (Tajweed Rules)',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/TAJWID-TAHSIN/TAJWEED RULES/(Jilid 3) Kaidah-kaidahTajwid (Tajweed Rules).pdf',size:'1.7 MB'},
+  {title:'Matan Manzhumah Jazariyah',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/AL-JAZARIYAH/Matan Manzhumah Jazariyah.pdf',size:'659 KB'},
+  {title:'manzhumah-jazariyah_terjemah-jawa_arab-melayu',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/AL-JAZARIYAH/manzhumah-jazariyah_terjemah-jawa_arab-melayu.pdf',size:'7.3 MB'},
+  {title:'Matan Al-Jazariyyah Beserta Terjemahannya 1_1',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/AL-JAZARIYAH/Matan Al-Jazariyyah Beserta Terjemahannya 1_1.pdf',size:'213 KB'},
+  {title:'Matan Kitab Al Jazariyah',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/AL-JAZARIYAH/Matan Kitab Al Jazariyah.pdf',size:'182 KB'},
+  {title:'modul daurah tajwidul quran - Matan Manzhumah Jazariyah',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/AL-JAZARIYAH/modul daurah tajwidul quran - Matan Manzhumah Jazariyah.pdf',size:'4.2 MB'},
+  {title:'Mandzumah Ibnul Jazary_nafidatulilmi.blogspot.com',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/AL-JAZARIYAH/Mandzumah Ibnul Jazary_nafidatulilmi.blogspot.com.pdf',size:'5.0 MB'},
+  {title:'Syarah Matan al Jazariyyah',cat:'TILAWAH_AL_QUR',path:'TILAWAH_AL_QUR\'AN/AL-JAZARIYAH/Syarah Matan al Jazariyyah.pdf',size:'3.9 MB'},
+  {title:'Kumpulan Materi khutbah-Ust Abu Hafizh Irfan',cat:'KHUTBAH_JUM',path:'KHUTBAH_JUM\'AT/Kumpulan Materi khutbah-Ust Abu Hafizh Irfan.pdf',size:'617 KB'},
+  {title:'Ensiklopedi Khutbah Pilihan-Ust Abu Hafizh Irfan',cat:'KHUTBAH_JUM',path:'KHUTBAH_JUM\'AT/Ensiklopedi Khutbah Pilihan-Ust Abu Hafizh Irfan.pdf',size:'3.1 MB'},
+  {title:'Khutbah Jumat, Istri Nuh, Luth, dan Firaun',cat:'KHUTBAH_JUM',path:'KHUTBAH_JUM\'AT/Khutbah Jumat, Istri Nuh, Luth, dan Firaun.pdf',size:'235 KB'},
+  {title:'Materi Khutbah Jumat',cat:'KHUTBAH_JUM',path:'KHUTBAH_JUM\'AT/Materi Khutbah Jumat.pdf',size:'8.4 MB'},
+  {title:'Khutbatul Hajjah',cat:'KHUTBAH_JUM',path:'KHUTBAH_JUM\'AT/Khutbatul Hajjah.pdf',size:'1.3 MB'},
   {title:'At Tuqaa',cat:'PENERBIT_BUKU_SALAF',path:'PENERBIT_BUKU_SALAF/At Tuqaa.pdf',size:'10.6 MB'},
   {title:'Pustaka Imam Syafi\'i 2023',cat:'PENERBIT_BUKU_SALAF',path:'PENERBIT_BUKU_SALAF/Pustaka Imam Syafi\'i 2023.pdf',size:'9.4 MB'},
   {title:'Pustaka Arafah',cat:'PENERBIT_BUKU_SALAF',path:'PENERBIT_BUKU_SALAF/Pustaka Arafah.pdf',size:'6.3 MB'},
@@ -356,96 +350,75 @@
   {title:'Insan Kamil',cat:'PENERBIT_BUKU_SALAF',path:'PENERBIT_BUKU_SALAF/HATI-HATI !!!/Insan Kamil.pdf',size:'4.1 MB'},
   {title:'Pustaka Al Kautsar',cat:'PENERBIT_BUKU_SALAF',path:'PENERBIT_BUKU_SALAF/HATI-HATI !!!/Pustaka Al Kautsar.pdf',size:'30.2 MB'},
   {title:'Al Qowam',cat:'PENERBIT_BUKU_SALAF',path:'PENERBIT_BUKU_SALAF/HATI-HATI !!!/Al Qowam.pdf',size:'7.6 MB'},
-  {title:'Medina Quran',cat:'PENERBIT_BUKU_SALAF',path:'PENERBIT_BUKU_SALAF/HATI-HATI !!!/Medina Quran.pdf',size:'6.7 MB'},
+  {title:'Medina Quran',cat:'PENERBIT_BUKU_SALAF',path:'PENERBIT_BUKU_SALAF/HATI-HATI !!!/Medina Quran.pdf',size:'6.7 MB'}
 ];
 
-const BOOKS_EMBEDDED = BOOKS;
+const CATEGORIES = {"Root": 2, "MIX_ARTIKEL_SUNNAH": 31, "KITABULLAH": 3, "MUAMALAH_MALIYAAH": 86, "INFO_MA": 6, "PEMBELAJARAN_DASAR_ISLAM": 9, "TILAWAH_AL_QUR": 79, "KHUTBAH_JUM": 5, "PENERBIT_BUKU_SALAF": 26};
 
-function loadBooks() { window.BOOKS = window.BOOKS || BOOKS_EMBEDDED; renderCategories(); renderBooks("all",""); document.getElementById("totalBooks").textContent = window.BOOKS.length; } catch(e) {
-                document.getElementById('catalog').innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px;color:#888;">Gagal memuat data buku. Coba refresh.</div>';
-            }
+let currentFilter = 'all';
+
+function renderBooks() {
+    const container = document.getElementById('catalog');
+    const search = document.getElementById('searchInput').value.toLowerCase().trim();
+    
+    const filtered = BOOKS.filter(b => {
+        const matchCat = currentFilter === 'all' || b.cat === currentFilter;
+        const matchSearch = !search || b.title.toLowerCase().includes(search);
+        return matchCat && matchSearch;
+    });
+    
+    if (filtered.length === 0) {
+        container.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px;color:#888;">Tidak ada buku ditemukan</div>';
+        return;
+    }
+    
+    container.innerHTML = filtered.map(b => `
+        <div class="book-card" onclick="openPDF('${b.path.replace(/'/g, "\\'")}', '${b.title.replace(/'/g, "\\'")}')">
+            <span class="cat-badge">${b.cat}</span>
+            <h3>${b.title}</h3>
+            <div class="meta">${b.size || ''}</div>
+        </div>
+    `).join('');
+}
+
+function filterBooks() {
+    renderBooks();
+}
+
+function filterByCat(cat) {
+    currentFilter = cat;
+    document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.cat-btn').forEach(b => {
+        if ((cat === 'all' && b.textContent.startsWith('Semua')) || b.getAttribute('onclick').includes("'" + cat + "'")) {
+            b.classList.add('active');
         }
-        // ========== GENERATE KATEGORI ==========
-        const CATEGORIES = {};
-        (window.BOOKS || []).forEach(b => { if(!CATEGORIES[b.cat]) CATEGORIES[b.cat] = 0; CATEGORIES[b.cat]++; });
+    });
+    renderBooks();
+}
 
-        // ========== RENDER ==========
-        function renderCategories() {
-            const tabs = document.getElementById('catTabs');
-            Object.keys(CATEGORIES).sort().forEach(cat => {
-                const tab = document.createElement('div');
-                tab.className = 'cat-tab';
-                tab.textContent = `${cat} (${CATEGORIES[cat]})`;
-                tab.onclick = () => filterCategory(cat);
-                tabs.appendChild(tab);
-            });
-        }
+function openPDF(path, title) {
+    const baseUrl = 'https://raw.githubusercontent.com/muhdanfyan/ebook-islam/main';
+    const pdfUrl = baseUrl + '/' + encodeURI(path);
+    document.getElementById('pdfViewer').src = pdfUrl;
+    document.getElementById('downloadBtn').href = pdfUrl;
+    document.getElementById('pdfTitle').textContent = '📖 ' + title;
+    document.getElementById('pdfModal').classList.add('show');
+    document.title = '📖 ' + title + ' — Ebook Islam';
+}
 
-        function renderBooks(filter = 'all', search = '') {
-            const container = document.getElementById('catalog');
-            const filtered = (window.BOOKS || []).filter(b => {
-                const matchCat = filter === 'all' || b.cat === filter;
-                const matchSearch = !search || b.title.toLowerCase().includes(search.toLowerCase());
-                return matchCat && matchSearch;
-            });
-            
-            if (filtered.length === 0) {
-                container.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px;color:#888;">Tidak ada buku ditemukan</div>';
-                return;
-            }
-            
-            container.innerHTML = filtered.map(b => `
-                <div class="book-card" onclick="openPDF('${b.path.replace(/'/g, "\\'")}', '${b.title.replace(/'/g, "\\'")}', '${b.path.replace(/'/g, "\\'")}')">
-                    <span class="cat-badge">${b.cat}</span>
-                    <h3>${b.title}</h3>
-                    <div class="meta">${b.size || ''}</div>
-                </div>
-            `).join('');
-        }
+function closePDF() {
+    document.getElementById('pdfModal').classList.remove('show');
+    document.getElementById('pdfViewer').src = '';
+    document.title = 'Ebook Islam — Koleksi Digital Salaf';
+}
 
-        function filterBooks() {
-            const search = document.getElementById('searchInput').value;
-            const active = document.querySelector('.cat-tab.active');
-            const filter = active ? active.textContent.split(' ')[0] : 'all';
-            if (filter === 'Semua') renderBooks('all', search);
-            else renderBooks(filter, search);
-        }
+// Init
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('totalBooks').textContent = BOOKS.length;
+    document.getElementById('totalCats').textContent = Object.keys(CATEGORIES).length;
+    renderBooks();
+});
+</script>
 
-        function filterCategory(cat) {
-            document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
-            event.target.classList.add('active');
-            document.getElementById('searchInput').value = '';
-            renderBooks(cat === 'all' ? 'all' : cat, '');
-        }
-
-        // ========== PDF VIEWER ==========
-        function openPDF(path, title, downloadPath) {
-            const baseUrl = 'https://raw.githubusercontent.com/muhdanfyan/ebook-islam/main';
-            const pdfUrl = `${baseUrl}/${encodeURI(path)}`;
-            document.getElementById('pdfViewer').src = pdfUrl;
-            document.getElementById('downloadBtn').href = pdfUrl;
-            document.getElementById('pdfModal').classList.add('show');
-            document.title = `📖 ${title} — Ebook Islam`;
-        }
-
-        function closeModal() {
-            document.getElementById('pdfModal').classList.remove('show');
-            document.getElementById('pdfViewer').src = '';
-            document.title = 'Ebook Islam — Koleksi Digital Salaf';
-        }
-
-        // Close on backdrop click
-        document.getElementById('pdfModal').onclick = function(e) {
-            if (e.target === this) closeModal();
-        };
-
-        // ESC key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') closeModal();
-        });
-
-        // Init
-        loadBooks();
-    </script>
 </body>
 </html>
