@@ -1,0 +1,9 @@
+{
+  "name": "ebook-islam",
+  "version": "1.0.0",
+  "description": "Koleksi eBook Islam Salaf",
+  "scripts": {
+    "dev": "npx serve .",
+    "build": "echo 'Static site - no build needed'"
+  }
+}

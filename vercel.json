@@ -1,0 +1,16 @@
+{
+  "redirects": [
+    { "source": "/", "destination": "/index.html", "permanent": true }
+  ],
+  "rewrites": [
+    { "source": "/:path*.pdf", "destination": "/:path*.pdf" }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "Access-Control-Allow-Origin", "value": "*" }
+      ]
+    }
+  ]
+}
