@@ -1,9 +1,10 @@
 {
+  "outputDirectory": ".",
   "redirects": [
     { "source": "/", "destination": "/index.html", "permanent": true }
   ],
   "rewrites": [
-    { "source": "/:path*.pdf", "destination": "/:path*.pdf" }
+    { "source": "/(.*)", "destination": "/$1" }
   ],
   "headers": [
     {
