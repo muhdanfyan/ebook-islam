@@ -1,17 +1,5 @@
 {
-  "outputDirectory": ".",
-  "redirects": [
-    { "source": "/", "destination": "/index.html", "permanent": true }
-  ],
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/$1" }
-  ],
-  "headers": [
-    {
-      "source": "/(.*)",
-      "headers": [
-        { "key": "Access-Control-Allow-Origin", "value": "*" }
-      ]
-    }
-  ]
+  "version": 2,
+  "public": true,
+  "cleanUrls": true
 }
